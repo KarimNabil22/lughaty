@@ -89,3 +89,25 @@
   text-align: center;
   margin-top: 10px;
 }
+
+.error {
+  background: rgba(255, 107, 84, 0.12);
+  border: 1px solid rgba(255, 107, 84, 0.35);
+  color: var(--coral);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.notice {
+  background: rgba(47, 180, 166, 0.12);
+  border: 1px solid rgba(47, 180, 166, 0.35);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}

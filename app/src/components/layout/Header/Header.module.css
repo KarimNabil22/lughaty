@@ -37,7 +37,14 @@
 
 .navcta {
   display: flex;
+  align-items: center;
   gap: 10px;
+}
+
+.greeting {
+  font-weight: 700;
+  color: var(--plum);
+  font-size: 14px;
 }
 
 @media (max-width: 860px) {

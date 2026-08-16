@@ -47,6 +47,16 @@
   font-size: 14px;
 }
 
+.dashboardLink {
+  font-weight: 700;
+  color: var(--purple);
+  font-size: 14px;
+}
+
+.dashboardLink:hover {
+  color: var(--coral);
+}
+
 @media (max-width: 860px) {
   .navlinks {
     display: none;

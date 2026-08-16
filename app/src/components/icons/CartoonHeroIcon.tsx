@@ -1,7 +1,11 @@
-function CartoonHeroIcon() {
+interface CartoonHeroIconProps {
+  color?: string
+}
+
+function CartoonHeroIcon({ color = '#FF6B54' }: CartoonHeroIconProps) {
   return (
     <svg width="70%" viewBox="0 0 120 150" aria-hidden="true">
-      <path d="M60 96 L96 120 L96 150 L24 150 L24 120 Z" fill="#FF6B54" />
+      <path d="M60 96 L96 120 L96 150 L24 150 L24 120 Z" fill={color} />
       <rect x="44" y="86" width="32" height="26" rx="10" fill="#F4C9A0" />
       <circle cx="60" cy="58" r="30" fill="#F4C9A0" />
       <path

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import LogoIcon from '../../icons/LogoIcon'
 import Button from '../../ui/Button'
 import type { AuthTab } from '../../AuthModal/AuthModal'
@@ -15,10 +16,10 @@ function Header({ onOpenAuth }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={`wrap ${styles.nav}`}>
-        <div className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <LogoIcon />
           لغتي
-        </div>
+        </Link>
         <nav className={styles.navlinks}>
           <a href="#how">إزاي بيشتغل</a>
           <a href="#options">أبطال الفيديو</a>
@@ -28,6 +29,9 @@ function Header({ onOpenAuth }: HeaderProps) {
         <div className={styles.navcta}>
           {user ? (
             <>
+              <Link to="/dashboard" className={styles.dashboardLink}>
+                لوحة الطفل
+              </Link>
               <span className={styles.greeting}>
                 أهلاً، {(user.user_metadata.full_name as string | undefined) || user.email}
               </span>

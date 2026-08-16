@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../ui/Button'
 import { supabase } from '../../lib/supabaseClient'
 import styles from './AuthModal.module.css'
@@ -19,6 +20,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+  const navigate = useNavigate()
 
   if (!open) return null
 
@@ -56,6 +58,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       }
       resetForm()
       onClose()
+      navigate('/dashboard')
     } else {
       const { data, error: signUpError } = await supabase.auth.signUp({
         email,
@@ -74,6 +77,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       if (data.session) {
         resetForm()
         onClose()
+        navigate('/dashboard')
       } else {
         setNotice('بعتنالك إيميل تأكيد — افتحه عشان تفعّل حسابك 📩')
       }

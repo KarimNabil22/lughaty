@@ -1,0 +1,82 @@
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(58, 43, 84, 0.08);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.card h3 {
+  font-size: 22px;
+  color: var(--plum);
+}
+
+.hint {
+  color: #5b4f73;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.heroGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.heroOption {
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background: none;
+  padding: 3px;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.heroOption.selected {
+  border-color: var(--coral);
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--plum);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid rgba(124, 107, 176, 0.25);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: var(--purple);
+}
+
+.error {
+  background: rgba(255, 107, 84, 0.12);
+  border: 1px solid rgba(255, 107, 84, 0.35);
+  color: var(--coral);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

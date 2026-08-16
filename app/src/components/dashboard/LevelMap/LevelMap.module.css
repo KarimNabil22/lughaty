@@ -1,0 +1,88 @@
+.wrap {
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  background: var(--card);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--plum);
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(58, 43, 84, 0.06);
+}
+
+.activeTab {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 16px;
+}
+
+.node {
+  position: relative;
+  background: var(--card);
+  border: none;
+  border-radius: 20px;
+  padding: 16px 8px 12px;
+  box-shadow: 0 8px 20px rgba(58, 43, 84, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.node:hover {
+  transform: translateY(-2px);
+}
+
+.nodeLabel {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--plum);
+  font-weight: 700;
+}
+
+.stars {
+  font-size: 13px;
+  color: var(--mango);
+  letter-spacing: 2px;
+}
+
+.nodeNum {
+  position: absolute;
+  top: 6px;
+  inset-inline-start: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #b6a9cf;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--plum);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(58, 43, 84, 0.35);
+  z-index: 50;
+  white-space: nowrap;
+}

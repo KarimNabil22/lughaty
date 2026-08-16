@@ -1,32 +1,19 @@
-# React + TypeScript + Vite
+# لغتي (Lughaty)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Web platform that teaches Arabic to Egyptian kids (KG → grade 6) through
+AI-personalized cartoon-hero videos plus interactive games. React + Vite +
+TypeScript, RTL, Egyptian Arabic UI. Auth and data via Supabase.
 
-Currently, two official plugins are available:
+See `../CLAUDE.md` at the repo root for full project context.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+npm install
+cp .env.example .env   # fill in Supabase URL + anon key
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Deploy
+
+Deployed to Vercel; env vars are managed in the Vercel project settings.

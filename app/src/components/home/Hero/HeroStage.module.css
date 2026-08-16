@@ -1,0 +1,151 @@
+.stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 440px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.screen {
+  position: absolute;
+  inset: 8% 6%;
+  background: linear-gradient(160deg, #fff, #f7efff);
+  border-radius: 32px;
+  box-shadow: 0 24px 60px rgba(58, 43, 84, 0.25);
+  border: 4px solid #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.flipwrap {
+  width: 62%;
+  aspect-ratio: 3 / 4;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flipper.flip {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.photo {
+  background: repeating-linear-gradient(45deg, #ede3f7, #ede3f7 12px, #e4d6f2 12px, #e4d6f2 24px);
+  color: #8a79a8;
+}
+
+.toon {
+  background: linear-gradient(160deg, #ffe7b8, #ffd08a);
+  transform: rotateY(180deg);
+}
+
+.shield {
+  position: absolute;
+  bottom: 6%;
+  inset-inline-start: 2%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 24px rgba(58, 43, 84, 0.2);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--plum);
+  max-width: 190px;
+}
+
+.shield b {
+  color: var(--teal);
+}
+
+.mascotHero {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 0;
+  width: 34%;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.mascotHero svg {
+  width: 100%;
+  height: auto;
+}
+
+.bubble {
+  position: absolute;
+  top: -6%;
+  inset-inline-end: 26%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--plum);
+  box-shadow: 0 8px 20px rgba(58, 43, 84, 0.2);
+  white-space: nowrap;
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  transition: 0.2s;
+}
+
+.bubble.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.float {
+  animation: float 3.4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.jump {
+  animation: jump 0.5s;
+}
+
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-18px);
+  }
+}
+
+@media (max-width: 860px) {
+  .stage {
+    order: -1;
+    max-width: 340px;
+  }
+}

@@ -1,0 +1,14 @@
+.footer {
+  padding: 40px 0 60px;
+  color: #7a6e94;
+  text-align: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--plum);
+  justify-content: center;
+  margin-bottom: 8px;
+}

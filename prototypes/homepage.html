@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لغتي — ابنك يتعلّم العربي وهو بطل الحكاية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#33244F; --plum:#3A2B54; --purple:#7C6BB0;
+    --mango:#F2B441; --coral:#FF6B54; --teal:#2FB4A6;
+    --green:#54A878; --bg:#FBF4FF; --card:#ffffff; --soft:#F3EAFB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Tajawal',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3,.disp{font-family:'Baloo Bhaijaan 2','Tajawal',sans-serif;line-height:1.25}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  a{color:inherit;text-decoration:none}
+  .btn{border:none;border-radius:14px;padding:13px 24px;font-family:'Baloo Bhaijaan 2',sans-serif;font-weight:700;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .1s,box-shadow .2s}
+  .btn:active{transform:scale(.96)}
+  .btn-primary{background:linear-gradient(135deg,var(--mango),var(--coral));color:#fff;box-shadow:0 6px 18px rgba(255,107,84,.35)}
+  .btn-primary:hover{box-shadow:0 10px 26px rgba(255,107,84,.45)}
+  .btn-ghost{background:transparent;color:var(--plum);border:2px solid rgba(124,107,176,.35)}
+  .btn-ghost:hover{background:var(--soft)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:40;background:rgba(251,244,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(124,107,176,.15)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Baloo Bhaijaan 2';font-weight:800;font-size:24px;color:var(--plum)}
+  .logo svg{width:38px;height:38px}
+  .navlinks{display:flex;gap:26px;font-weight:700;color:var(--plum)}
+  .navlinks a:hover{color:var(--coral)}
+  .navcta{display:flex;gap:10px}
+
+  /* Hero */
+  .hero{position:relative;padding:56px 0 40px;overflow:hidden}
+  .blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;z-index:0}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--soft);color:var(--purple);font-weight:700;padding:6px 14px;border-radius:999px;font-size:14px;margin-bottom:16px}
+  .hero h1{font-size:clamp(30px,5vw,50px);color:var(--plum);font-weight:800}
+  .hero h1 .hl{color:var(--coral)}
+  .hero p.sub{font-size:18px;color:#5b4f73;margin:16px 0 24px;max-width:520px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid rgba(124,107,176,.2);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700;color:var(--plum)}
+
+  /* Hero stage (signature) */
+  .stage{position:relative;aspect-ratio:1/1;max-width:440px;margin-inline:auto;width:100%}
+  .screen{position:absolute;inset:8% 6%;background:linear-gradient(160deg,#fff,#F7EFFF);border-radius:32px;box-shadow:0 24px 60px rgba(58,43,84,.25);border:4px solid #fff;display:grid;place-items:center;overflow:hidden}
+  .flipwrap{width:62%;aspect-ratio:3/4;perspective:900px}
+  .flipper{position:relative;width:100%;height:100%;transition:transform .9s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+  .flipper.flip{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+  .face.photo{background:repeating-linear-gradient(45deg,#EDE3F7,#EDE3F7 12px,#E4D6F2 12px,#E4D6F2 24px);color:#8a79a8}
+  .face.toon{background:linear-gradient(160deg,#FFE7B8,#FFD08A);transform:rotateY(180deg)}
+  .stage .shield{position:absolute;bottom:6%;inset-inline-start:2%;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 10px 24px rgba(58,43,84,.2);font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;color:var(--plum);max-width:190px}
+  .stage .shield b{color:var(--teal)}
+  .mascot-hero{position:absolute;top:0;inset-inline-end:0;width:34%;cursor:pointer;z-index:3}
+  .mascot-hero svg{width:100%;height:auto}
+  .bubble{position:absolute;top:-6%;inset-inline-end:26%;background:#fff;border-radius:16px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--plum);box-shadow:0 8px 20px rgba(58,43,84,.2);opacity:0;transform:translateY(6px) scale(.9);transition:.2s;white-space:nowrap;z-index:4}
+  .bubble.show{opacity:1;transform:translateY(0) scale(1)}
+
+  section{padding:56px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 36px}
+  .sec-head h2{font-size:clamp(26px,4vw,38px);color:var(--plum)}
+  .sec-head p{color:#5b4f73;margin-top:10px}
+  .eye{color:var(--purple);font-weight:800;letter-spacing:1px;font-size:14px;margin-bottom:8px}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .step{background:var(--card);border-radius:22px;padding:26px;box-shadow:0 10px 30px rgba(58,43,84,.07);position:relative}
+  .step .num{font-family:'Baloo Bhaijaan 2';font-weight:800;font-size:40px;color:var(--mango);opacity:.55;line-height:1}
+  .step .ico{font-size:34px;margin:6px 0 8px}
+  .step h3{font-size:20px;color:var(--plum)}
+  .step p{color:#5b4f73;font-size:15px;margin-top:6px}
+
+  /* Options */
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .optcard{border-radius:24px;padding:28px;position:relative;overflow:hidden}
+  .optcard.hero-opt{background:linear-gradient(160deg,#3A2B54,#5B4A7E);color:#fff}
+  .optcard.plain{background:var(--card);box-shadow:0 10px 30px rgba(58,43,84,.07)}
+  .optcard h3{font-size:22px;margin-bottom:6px}
+  .optcard.hero-opt h3{color:#fff}
+  .optcard .tag{display:inline-block;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .optcard ul{list-style:none;margin-top:14px;display:grid;gap:8px;font-size:15px}
+  .optcard li{display:flex;gap:8px;align-items:flex-start}
+  .optcard.hero-opt li{color:#EADFF7}
+  .privacy{margin-top:16px;background:rgba(47,180,166,.15);border:1px solid rgba(47,180,166,.4);border-radius:14px;padding:12px 14px;font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+
+  /* Features */
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .feat{background:var(--card);border-radius:20px;padding:22px;box-shadow:0 8px 24px rgba(58,43,84,.06)}
+  .feat .fico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;margin-bottom:12px}
+  .feat h3{font-size:18px;color:var(--plum)}
+  .feat p{font-size:14px;color:#5b4f73;margin-top:4px}
+
+  /* Pricing */
+  .pricing{background:linear-gradient(180deg,transparent,var(--soft));}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .plan{background:var(--card);border-radius:24px;padding:28px;box-shadow:0 10px 30px rgba(58,43,84,.08);display:flex;flex-direction:column;border:2px solid transparent}
+  .plan.pop{border-color:var(--coral);transform:scale(1.03);position:relative}
+  .plan .poptag{position:absolute;top:-13px;inset-inline-start:50%;transform:translateX(50%);background:var(--coral);color:#fff;font-weight:700;font-size:13px;padding:5px 14px;border-radius:999px}
+  .plan h3{font-size:22px;color:var(--plum)}
+  .price{font-family:'Baloo Bhaijaan 2';font-weight:800;font-size:38px;color:var(--plum);margin:8px 0}
+  .price span{font-size:16px;font-weight:500;color:#8779a0}
+  .plan ul{list-style:none;margin:14px 0 22px;display:grid;gap:10px;font-size:15px;flex:1}
+  .plan li{display:flex;gap:8px}
+  .plan li .ck{color:var(--green);font-weight:800}
+
+  /* Trust band */
+  .trust{background:#3A2B54;color:#fff;border-radius:28px;padding:36px;text-align:center;margin:0 20px}
+  .trust h2{color:#fff;font-size:28px}
+  .trust p{color:#D9CEEA;max-width:640px;margin:12px auto 0}
+  .trust .tgrid{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .trust .titem{font-weight:700;display:flex;gap:8px;align-items:center}
+
+  footer{padding:40px 0 60px;color:#7a6e94;text-align:center}
+
+  /* Modal */
+  .overlay{position:fixed;inset:0;background:rgba(51,36,79,.5);backdrop-filter:blur(4px);z-index:60;display:none;place-items:center;padding:20px}
+  .overlay.open{display:grid}
+  .modal{background:#fff;border-radius:26px;padding:28px;max-width:400px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+  .modal .tabs{display:flex;background:var(--soft);border-radius:14px;padding:5px;margin-bottom:18px}
+  .modal .tabs button{flex:1;border:none;background:transparent;padding:10px;border-radius:10px;font-family:'Baloo Bhaijaan 2';font-weight:700;cursor:pointer;color:var(--plum)}
+  .modal .tabs button.active{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-weight:700;font-size:14px;margin-bottom:6px;color:var(--plum)}
+  .field input{width:100%;padding:12px 14px;border:2px solid rgba(124,107,176,.25);border-radius:12px;font-family:inherit;font-size:15px;outline:none}
+  .field input:focus{border-color:var(--purple)}
+  .modal .close{float:left;background:none;border:none;font-size:22px;cursor:pointer;color:#9a8cb5}
+  .note{font-size:12px;color:#9a8cb5;text-align:center;margin-top:10px}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+  .float{animation:float 3.4s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes jump{0%,100%{transform:translateY(0)}40%{transform:translateY(-18px)}}
+  .jump{animation:jump .5s}
+
+  @media(max-width:860px){
+    .navlinks{display:none}
+    .hero-grid,.opts{grid-template-columns:1fr}
+    .stage{order:-1;max-width:340px}
+    .steps,.feats,.plans{grid-template-columns:1fr}
+    .plan.pop{transform:none}
+    .plan .poptag{transform:translateX(50%)}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="40" fill="#7C6BB0"/><ellipse cx="46" cy="56" rx="13" ry="15" fill="#fff"/><ellipse cx="74" cy="56" rx="13" ry="15" fill="#fff"/><circle cx="47" cy="58" r="6" fill="#33244F"/><circle cx="73" cy="58" r="6" fill="#33244F"/><path d="M50 76 Q60 84 70 76" stroke="#33244F" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="86" y="60" width="15" height="17" rx="3" fill="#F2B441"/></svg>
+      لغتي
+    </div>
+    <nav class="navlinks">
+      <a href="#how">إزاي بيشتغل</a>
+      <a href="#options">أبطال الفيديو</a>
+      <a href="#features">المميزات</a>
+      <a href="#pricing">الباقات</a>
+    </nav>
+    <div class="navcta">
+      <button class="btn btn-ghost" onclick="openModal('login')">دخول</button>
+      <button class="btn btn-primary" onclick="openModal('signup')">ابدأ مجانًا</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob" style="width:320px;height:320px;background:#F2B441;top:-60px;inset-inline-start:-80px"></div>
+  <div class="blob" style="width:280px;height:280px;background:#2FB4A6;bottom:-80px;inset-inline-end:-60px"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🇪🇬 بالعامية المصرية · من الحضانة لسادسة ابتدائي</span>
+      <h1>ابنك يتعلّم العربي <span class="hl">وهو بطل الحكاية</span></h1>
+      <p class="sub">فيديوهات وألعاب تعليمية ممتعة، وابنك نفسه بيتحوّل لبطل كرتوني جوّه القصة — من غير ما صورته تسيب موبايلك.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="openModal('signup')">جرّب مجانًا</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('how').scrollIntoView()">شوف إزاي بيشتغل</button>
+      </div>
+      <div class="chips">
+        <span class="chip">🔒 آمن وخاص للأطفال</span>
+        <span class="chip">🎮 ألعاب زي المغامرات</span>
+        <span class="chip">📊 تقارير لولي الأمر</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="screen">
+        <div class="flipwrap" id="flipwrap">
+          <div class="flipper" id="flipper">
+            <div class="face photo">
+              <div style="text-align:center"><div style="font-size:52px">📷</div><div style="font-weight:700;margin-top:6px">صورة ابنك</div></div>
+            </div>
+            <div class="face toon">
+              <!-- طفل كرتوني بطل -->
+              <svg width="70%" viewBox="0 0 120 150">
+                <path d="M60 96 L96 120 L96 150 L24 150 L24 120 Z" fill="#FF6B54"/>
+                <rect x="44" y="86" width="32" height="26" rx="10" fill="#F4C9A0"/>
+                <circle cx="60" cy="58" r="30" fill="#F4C9A0"/>
+                <path d="M30 52 Q34 22 60 22 Q86 22 90 52 Q78 40 60 42 Q42 40 30 52Z" fill="#3A2B54"/>
+                <circle cx="50" cy="58" r="4.5" fill="#33244F"/><circle cx="70" cy="58" r="4.5" fill="#33244F"/>
+                <path d="M52 70 Q60 76 68 70" stroke="#B5623E" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M60 108 L64 120 L56 120 Z" fill="#F2B441"/>
+                <text x="60" y="140" font-size="20" text-anchor="middle" fill="#fff">⭐</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="mascot-hero float" id="mascot" onclick="mascotPlay()">
+          <svg viewBox="0 0 120 120"><ellipse cx="60" cy="110" rx="26" ry="5" fill="rgba(0,0,0,.12)"/><circle cx="58" cy="58" r="34" fill="#7C6BB0"/><path d="M40 30 L48 44 L32 42 Z" fill="#7C6BB0"/><path d="M76 30 L68 44 L84 42 Z" fill="#7C6BB0"/><ellipse cx="44" cy="55" rx="12" ry="14" fill="#fff"/><ellipse cx="73" cy="55" rx="12" ry="14" fill="#fff"/><circle cx="46" cy="57" r="5.5" fill="#33244F"/><circle cx="71" cy="57" r="5.5" fill="#33244F"/><path d="M50 72 Q59 80 67 72" stroke="#33244F" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="84" y="60" width="14" height="16" rx="3" fill="#F2B441"/></svg>
+        </div>
+        <div class="bubble" id="bubble">أهلاً بيك! 👋</div>
+      </div>
+      <div class="shield">🔒 <span>صورة ابنك <b>متسيبش موبايلك</b> — بنعمل نسخة كرتونية بس</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eye">إزاي بيشتغل</div><h2>٣ خطوات وابنك يبقى البطل</h2><p>سهلة على ولي الأمر، ممتعة للطفل.</p></div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">١</div><div class="ico">📸</div><h3>ارفع صورة (اختياري)</h3><p>الصورة تتحوّل لشخصية كرتونية على جهازك، والأصل ما بيطلعش من الموبايل. أو اختار بطل كرتوني جاهز.</p></div>
+      <div class="step reveal"><div class="num">٢</div><div class="ico">🎬</div><h3>الفيديو بيتعمل</h3><p>ابنك بيلاقي نفسه بطل كرتوني في فيديوهات بتعلّمه الحروف والقراءة بالعامية المصرية.</p></div>
+      <div class="step reveal"><div class="num">٣</div><div class="ico">🎮</div><h3>يتعلّم ويلعب</h3><p>بعد كل فيديو ألعاب زي المغامرات وغرف الهروب، وأنت تتابع تقدّمه بتقرير بسيط.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONS -->
+<section id="options" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eye">أبطال الفيديو</div><h2>ابنك البطل… أو بطل كرتوني جاهز</h2><p>أنت تختار اللي يريّحك.</p></div>
+    <div class="opts">
+      <div class="optcard hero-opt reveal">
+        <span class="tag">مميّز</span>
+        <h3>بطل شبه ابنك ⭐</h3>
+        <p style="color:#EADFF7">بنحوّل صورة ابنك لشخصية كرتونية شبهه، ويبقى هو بطل الفيديوهات.</p>
+        <ul>
+          <li>✦ شخصية كرتونية مستوحاة من ملامح ابنك</li>
+          <li>✦ إحساس إنه بطل قصته بجد</li>
+          <li>✦ خصوصية كاملة — الفيديوهات خاصة بحسابك</li>
+        </ul>
+        <div class="privacy">🔒 الصورة الأصلية متسيبش موبايلك، وبتتمسح بعد ما الشخصية تتعمل.</div>
+      </div>
+      <div class="optcard plain reveal">
+        <span class="tag" style="background:var(--purple)">جاهز فورًا</span>
+        <h3>أبطال كرتونية جاهزة 🦁</h3>
+        <p style="color:#5b4f73">مش عايز ترفع صور؟ فيه أبطال كرتونية لطيفة جاهزين على طول.</p>
+        <ul>
+          <li>✅ من غير أي رفع صور</li>
+          <li>✅ نفس الدروس والألعاب بالظبط</li>
+          <li>✅ بيشتغل فورًا لكل الأطفال</li>
+        </ul>
+        <div class="privacy" style="background:rgba(124,107,176,.12);border-color:rgba(124,107,176,.35)">👍 مناسب لأي حد مش عايز يرفع صورة طفله.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eye">المميزات</div><h2>مش بس فيديوهات — تجربة تعليمية كاملة</h2></div>
+    <div class="feats">
+      <div class="feat reveal"><div class="fico" style="background:#FFE9C2">🎬</div><h3>فيديوهات تعليمية</h3><p>حروف وقراءة بالعامية المصرية، مقسّمة من الحضانة لسادسة ابتدائي.</p></div>
+      <div class="feat reveal"><div class="fico" style="background:#D7F3EF">🕹️</div><h3>ألعاب متنوّعة</h3><p>تتبّع الحروف، نطّ البالونات، غرف الهروب، المطاردة، لعبة الذاكرة.</p></div>
+      <div class="feat reveal"><div class="fico" style="background:#FFDAD2">🗣️</div><h3>عامية مصرية</h3><p>شرح بلهجة الطفل بيفهمها، مش فصحى جافة.</p></div>
+      <div class="feat reveal"><div class="fico" style="background:#E7DEF7">📊</div><h3>تقارير لولي الأمر</h3><p>تابع نجوم ابنك وتقدّمه في كل مهارة.</p></div>
+      <div class="feat reveal"><div class="fico" style="background:#DDEEDD">🔒</div><h3>آمن وخاص</h3><p>مفيش إعلانات، مفيش مشاركة عامة، وبيانات الطفل محمية.</p></div>
+      <div class="feat reveal"><div class="fico" style="background:#FFE9C2">🏆</div><h3>مكافآت وتحفيز</h3><p>نجوم وشارات ومستويات بتفتح، عشان الطفل يكمّل.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="eye">الباقات</div><h2>ابدأ ببلاش، وطوّر لما يعجبك</h2><p>أسعار مبدئية — بالجنيه المصري.</p></div>
+    <div class="plans">
+      <div class="plan reveal">
+        <h3>مجاني</h3>
+        <div class="price">٠ <span>جنيه</span></div>
+        <ul>
+          <li><span class="ck">✓</span> باقة دروس تجريبية</li>
+          <li><span class="ck">✓</span> أبطال كرتونية جاهزة</li>
+          <li><span class="ck">✓</span> ألعاب أساسية</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="openModal('signup')">ابدأ دلوقتي</button>
+      </div>
+      <div class="plan pop reveal">
+        <span class="poptag">الأكثر اختيارًا</span>
+        <h3>الأساسية</h3>
+        <div class="price">٩٩ <span>ج / شهر</span></div>
+        <ul>
+          <li><span class="ck">✓</span> كل الفيديوهات الكرتونية</li>
+          <li><span class="ck">✓</span> كل الألعاب والمستويات</li>
+          <li><span class="ck">✓</span> تقارير تقدّم لولي الأمر</li>
+          <li><span class="ck">✓</span> بدون إعلانات</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openModal('signup')">اشترك</button>
+      </div>
+      <div class="plan reveal">
+        <h3>بريميوم</h3>
+        <div class="price">١٩٩ <span>ج / شهر</span></div>
+        <ul>
+          <li><span class="ck">✓</span> كل مميزات الأساسية</li>
+          <li><span class="ck">✓</span> بطل كرتوني شبه ابنك</li>
+          <li><span class="ck">✓</span> رصيد فيديوهات مخصّصة شهريًا</li>
+          <li><span class="ck">✓</span> أولوية في الدعم</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="openModal('signup')">اشترك</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="trust reveal">
+    <h2>خصوصية ابنك أول أولوية 🔒</h2>
+    <p>الفكرة إن ابنك يفرح إنه بطل، وأنت مطمّن. عشان كده الصورة الأصلية متسيبش موبايلك، والفيديوهات خاصة بحسابك، ومفيش إعلانات ولا مشاركة عامة.</p>
+    <div class="tgrid">
+      <div class="titem">🔒 الصورة على جهازك</div>
+      <div class="titem">🚫 بدون إعلانات</div>
+      <div class="titem">👨‍👩‍👧 تحكّم كامل لولي الأمر</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="justify-content:center;margin-bottom:8px">لغتي</div>
+    <p>© 2026 لغتي · نسخة تجريبية للعرض</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">✕</button>
+    <div class="tabs">
+      <button id="tab-login" class="active" onclick="switchTab('login')">دخول</button>
+      <button id="tab-signup" onclick="switchTab('signup')">حساب جديد</button>
+    </div>
+    <div id="signup-name" class="field" style="display:none">
+      <label>اسمك</label><input type="text" placeholder="اكتب اسمك" />
+    </div>
+    <div class="field"><label>البريد الإلكتروني</label><input type="email" placeholder="you@example.com" /></div>
+    <div class="field"><label>كلمة المرور</label><input type="password" placeholder="••••••••" /></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="fakeAuth()"><span id="modal-btn">دخول</span></button>
+    <div class="note">نسخة تجريبية — الدخول لسه مش شغّال فعليًا.</div>
+  </div>
+</div>
+
+<script>
+  // Mascot interaction
+  const phrases=['أهلاً بيك! 👋','يلا نتعلّم عربي!','ابنك هيبقى البطل! ⭐','جاهز للمغامرة؟ 🚀','برافو! 🎉'];
+  function mascotPlay(){
+    const m=document.getElementById('mascot'),b=document.getElementById('bubble');
+    m.classList.remove('float');m.classList.add('jump');
+    b.textContent=phrases[Math.floor(Math.random()*phrases.length)];b.classList.add('show');
+    setTimeout(()=>{m.classList.remove('jump');m.classList.add('float');},500);
+    setTimeout(()=>b.classList.remove('show'),1800);
+  }
+  // Auto flip photo -> cartoon
+  const flipper=document.getElementById('flipper');
+  setInterval(()=>flipper.classList.toggle('flip'),3200);
+  document.getElementById('flipwrap').onclick=()=>flipper.classList.toggle('flip');
+
+  // Modal
+  const overlay=document.getElementById('overlay');
+  function openModal(t){overlay.classList.add('open');switchTab(t);}
+  function closeModal(){overlay.classList.remove('open');}
+  function switchTab(t){
+    const login=t==='login';
+    document.getElementById('tab-login').classList.toggle('active',login);
+    document.getElementById('tab-signup').classList.toggle('active',!login);
+    document.getElementById('signup-name').style.display=login?'none':'block';
+    document.getElementById('modal-btn').textContent=login?'دخول':'إنشاء حساب';
+  }
+  function fakeAuth(){
+    const b=document.getElementById('modal-btn');const o=b.textContent;
+    b.textContent='تجريبي — لسه مش شغّال ✋';
+    setTimeout(()=>b.textContent=o,1600);
+  }
+
+  // Scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

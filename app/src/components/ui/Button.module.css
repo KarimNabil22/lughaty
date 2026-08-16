@@ -1,0 +1,39 @@
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 13px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.1s,
+    box-shadow 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--mango), var(--coral));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 107, 84, 0.35);
+}
+
+.primary:hover {
+  box-shadow: 0 10px 26px rgba(255, 107, 84, 0.45);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--plum);
+  border: 2px solid rgba(124, 107, 176, 0.35);
+}
+
+.ghost:hover {
+  background: var(--soft);
+}

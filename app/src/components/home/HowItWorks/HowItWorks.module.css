@@ -1,0 +1,68 @@
+.secHead {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+
+.secHead h2 {
+  font-size: clamp(26px, 4vw, 38px);
+  color: var(--plum);
+}
+
+.secHead p {
+  color: #5b4f73;
+  margin-top: 10px;
+}
+
+.eye {
+  color: var(--purple);
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.step {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 10px 30px rgba(58, 43, 84, 0.07);
+  position: relative;
+}
+
+.step .num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  color: var(--mango);
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.step .ico {
+  font-size: 34px;
+  margin: 6px 0 8px;
+}
+
+.step h3 {
+  font-size: 20px;
+  color: var(--plum);
+}
+
+.step p {
+  color: #5b4f73;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}

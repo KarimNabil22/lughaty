@@ -1,0 +1,15 @@
+:root {
+  --ink: #33244f;
+  --plum: #3a2b54;
+  --purple: #7c6bb0;
+  --mango: #f2b441;
+  --coral: #ff6b54;
+  --teal: #2fb4a6;
+  --green: #54a878;
+  --bg: #fbf4ff;
+  --card: #ffffff;
+  --soft: #f3eafb;
+
+  --font-display: 'Baloo Bhaijaan 2', 'Tajawal', sans-serif;
+  --font-body: 'Tajawal', sans-serif;
+}

@@ -67,7 +67,11 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       })
       setLoading(false)
       if (signUpError) {
-        setError('حصلت مشكلة، جرّب تاني')
+        setError(
+          signUpError.code === 'over_email_send_rate_limit'
+            ? 'في طلبات كتير دلوقتي، استنى شوية وجرّب تاني'
+            : 'حصلت مشكلة، جرّب تاني',
+        )
         return
       }
       if (data.user && data.user.identities && data.user.identities.length === 0) {

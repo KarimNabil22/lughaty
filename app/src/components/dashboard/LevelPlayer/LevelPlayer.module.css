@@ -1,0 +1,157 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(51, 36, 79, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.modal {
+  background: var(--bg);
+  border-radius: 28px;
+  padding: 18px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--plum);
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--soft);
+  color: var(--plum);
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.exit {
+  background: var(--soft);
+  border: none;
+  color: var(--plum);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(58, 43, 84, 0.08);
+}
+
+.mascotWrap {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.mascotFloat {
+  display: inline-block;
+  width: 84px;
+  height: 84px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.mascotFloat svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bigLetter {
+  font-family: var(--font-display);
+  font-size: 84px;
+  font-weight: 800;
+  color: var(--purple);
+  line-height: 1;
+}
+
+.exampleEmoji {
+  font-size: 44px;
+  margin-top: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.chip {
+  border: none;
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-weight: 700;
+  background: var(--soft);
+  color: var(--plum);
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.chip .em {
+  font-size: 22px;
+}
+
+.winTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--plum);
+}
+
+.winStars {
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.winNote {
+  font-weight: 700;
+  color: var(--green);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

@@ -1,6 +1,10 @@
+export type GameKind = 'trace'
+
 export interface Level {
   id: string
   label: string
+  letter?: string
+  game?: GameKind
 }
 
 export interface World {
@@ -29,7 +33,7 @@ export const WORLDS: World[] = [
     id: 'kg-letters',
     title: 'حروف الحضانة',
     icon: '🔤',
-    levels: KG_LETTERS.map((letter, i) => ({ id: `kg-${i}`, label: letter })),
+    levels: KG_LETTERS.map((letter, i) => ({ id: `kg-${i}`, label: letter, letter, game: 'trace' })),
   },
   {
     id: 'grade1-reading',

@@ -1,14 +1,25 @@
 import { useState } from 'react'
-import { WORLDS } from '../../../data/worlds'
+import { WORLDS, type Level } from '../../../data/worlds'
+import LevelPlayer from '../LevelPlayer/LevelPlayer'
 import styles from './LevelMap.module.css'
+
+function starLabel(n: number) {
+  return '⭐'.repeat(n) + '☆'.repeat(3 - n)
+}
 
 function LevelMap() {
   const [worldId, setWorldId] = useState(WORLDS[0].id)
   const [toast, setToast] = useState<string | null>(null)
+  const [stars, setStars] = useState<Record<string, number>>({})
+  const [playingLevel, setPlayingLevel] = useState<Level | null>(null)
   const world = WORLDS.find((w) => w.id === worldId) ?? WORLDS[0]
 
-  function handleLevelClick(label: string) {
-    setToast(`لعبة "${label}" جاية قريبًا 🚧`)
+  function handleLevelClick(level: Level) {
+    if (level.game) {
+      setPlayingLevel(level)
+      return
+    }
+    setToast(`لعبة "${level.label}" جاية قريبًا 🚧`)
     setTimeout(() => setToast(null), 2000)
   }
 
@@ -28,15 +39,23 @@ function LevelMap() {
 
       <div className={styles.grid}>
         {world.levels.map((level, i) => (
-          <button key={level.id} className={styles.node} onClick={() => handleLevelClick(level.label)}>
+          <button key={level.id} className={styles.node} onClick={() => handleLevelClick(level)}>
             <span className={styles.nodeLabel}>{level.label}</span>
-            <span className={styles.stars}>☆☆☆</span>
+            <span className={styles.stars}>{starLabel(stars[level.id] ?? 0)}</span>
             <span className={styles.nodeNum}>{i + 1}</span>
           </button>
         ))}
       </div>
 
       {toast && <div className={styles.toast}>{toast}</div>}
+
+      {playingLevel && (
+        <LevelPlayer
+          level={playingLevel}
+          onExit={() => setPlayingLevel(null)}
+          onComplete={(n) => setStars((prev) => ({ ...prev, [playingLevel.id]: n }))}
+        />
+      )}
     </div>
   )
 }

@@ -20,6 +20,10 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+  const [canResend, setCanResend] = useState(false)
+  const [resendState, setResendState] = useState<'idle' | 'loading' | 'sent' | 'already-confirmed' | 'error'>(
+    'idle',
+  )
   const navigate = useNavigate()
 
   if (!open) return null
@@ -32,6 +36,8 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
     setPassword('')
     setError(null)
     setNotice(null)
+    setCanResend(false)
+    setResendState('idle')
   }
 
   function handleClose() {
@@ -47,17 +53,22 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
   async function handleSubmit() {
     setError(null)
     setNotice(null)
+    setCanResend(false)
+    setResendState('idle')
     setLoading(true)
 
     try {
       if (isLogin) {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) {
+          // سوباباز بترجع نفس الخطأ العام لكلمة المرور الغلط ولإيميل مش متأكد —
+          // مش قادرين نفرق بينهم من غير ما نجرب نبعت تأكيد تاني
           setError(
             signInError.code === 'email_not_confirmed'
               ? 'لازم تأكّد إيميلك الأول — افتح الرسالة اللي بعتناهالك'
               : 'البريد أو كلمة المرور غلط',
           )
+          setCanResend(true)
           return
         }
         resetForm()
@@ -93,6 +104,20 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       setError('حصلت مشكلة في الاتصال — لو عندك إضافات في المتصفح جرّب تقفلها وحاول تاني')
     } finally {
       setLoading(false)
+    }
+  }
+
+  async function handleResend() {
+    setResendState('loading')
+    try {
+      const { error: resendError } = await supabase.auth.resend({ type: 'signup', email })
+      if (resendError) {
+        setResendState(resendError.message.toLowerCase().includes('confirm') ? 'already-confirmed' : 'error')
+      } else {
+        setResendState('sent')
+      }
+    } catch {
+      setResendState('error')
     }
   }
 
@@ -151,6 +176,21 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
 
         {error && <div className={styles.error}>{error}</div>}
         {notice && <div className={styles.notice}>{notice}</div>}
+
+        {canResend && (
+          <div className={styles.resend}>
+            {resendState === 'sent' && <div className={styles.notice}>بعتنالك إيميل تأكيد جديد — افتحه وجرّب تاني 📩</div>}
+            {resendState === 'already-confirmed' && (
+              <div className={styles.error}>الإيميل ده متأكد بالفعل — يبقى كلمة المرور هي الغلط</div>
+            )}
+            {resendState === 'error' && <div className={styles.error}>حصلت مشكلة، جرّب تاني</div>}
+            {(resendState === 'idle' || resendState === 'loading') && (
+              <button type="button" className={styles.resendLink} onClick={handleResend} disabled={resendState === 'loading'}>
+                {resendState === 'loading' ? 'بنبعت...' : 'لسه ماأكّدتش إيميلك؟ ابعتلنا التأكيد تاني'}
+              </button>
+            )}
+          </div>
+        )}
 
         <Button variant="primary" className={styles.submit} onClick={handleSubmit} disabled={loading}>
           {loading ? 'لحظة...' : isLogin ? 'دخول' : 'إنشاء حساب'}

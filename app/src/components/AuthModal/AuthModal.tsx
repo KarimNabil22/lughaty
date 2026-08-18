@@ -49,46 +49,50 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
     setNotice(null)
     setLoading(true)
 
-    if (isLogin) {
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
-      setLoading(false)
-      if (signInError) {
-        setError(
-          signInError.code === 'email_not_confirmed'
-            ? 'لازم تأكّد إيميلك الأول — افتح الرسالة اللي بعتناهالك'
-            : 'البريد أو كلمة المرور غلط',
-        )
-        return
-      }
-      resetForm()
-      onClose()
-      navigate('/dashboard')
-    } else {
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { data: { full_name: name } },
-      })
-      setLoading(false)
-      if (signUpError) {
-        setError(
-          signUpError.code === 'over_email_send_rate_limit'
-            ? 'في طلبات كتير دلوقتي، استنى شوية وجرّب تاني'
-            : 'حصلت مشكلة، جرّب تاني',
-        )
-        return
-      }
-      if (data.user && data.user.identities && data.user.identities.length === 0) {
-        setError('الإيميل ده مسجّل قبل كده')
-        return
-      }
-      if (data.session) {
+    try {
+      if (isLogin) {
+        const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+        if (signInError) {
+          setError(
+            signInError.code === 'email_not_confirmed'
+              ? 'لازم تأكّد إيميلك الأول — افتح الرسالة اللي بعتناهالك'
+              : 'البريد أو كلمة المرور غلط',
+          )
+          return
+        }
         resetForm()
         onClose()
         navigate('/dashboard')
       } else {
-        setNotice('بعتنالك إيميل تأكيد — افتحه عشان تفعّل حسابك 📩')
+        const { data, error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { full_name: name } },
+        })
+        if (signUpError) {
+          setError(
+            signUpError.code === 'over_email_send_rate_limit'
+              ? 'في طلبات كتير دلوقتي، استنى شوية وجرّب تاني'
+              : 'حصلت مشكلة، جرّب تاني',
+          )
+          return
+        }
+        if (data.user && data.user.identities && data.user.identities.length === 0) {
+          setError('الإيميل ده مسجّل قبل كده')
+          return
+        }
+        if (data.session) {
+          resetForm()
+          onClose()
+          navigate('/dashboard')
+        } else {
+          setNotice('بعتنالك إيميل تأكيد — افتحه عشان تفعّل حسابك 📩')
+        }
       }
+    } catch {
+      setError('حصلت مشكلة في الاتصال — لو عندك إضافات في المتصفح جرّب تقفلها وحاول تاني')
+    } finally {
+      setLoading(false)
     }
   }
 

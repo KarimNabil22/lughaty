@@ -61,6 +61,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       if (isLogin) {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) {
+          console.error('[لغتي auth] signIn error', signInError.status, signInError.code, signInError.message)
           // سوباباز بترجع نفس الخطأ العام لكلمة المرور الغلط ولإيميل مش متأكد —
           // مش قادرين نفرق بينهم من غير ما نجرب نبعت تأكيد تاني
           setError(
@@ -81,10 +82,11 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
           options: { data: { full_name: name }, emailRedirectTo: window.location.origin },
         })
         if (signUpError) {
+          console.error('[لغتي auth] signUp error', signUpError.status, signUpError.code, signUpError.message)
           setError(
             signUpError.code === 'over_email_send_rate_limit'
               ? 'في طلبات كتير دلوقتي، استنى شوية وجرّب تاني'
-              : 'حصلت مشكلة، جرّب تاني',
+              : 'حصلت مشكلة، جرّب تاني — لو عندك إضافات في المتصفح (زي أدوات الخصوصية أو الإعلانات) جرّب تقفلها',
           )
           return
         }
@@ -100,7 +102,8 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
           setNotice('بعتنالك إيميل تأكيد — افتحه عشان تفعّل حسابك 📩')
         }
       }
-    } catch {
+    } catch (err) {
+      console.error('[لغتي auth] request threw', err)
       setError('حصلت مشكلة في الاتصال — لو عندك إضافات في المتصفح جرّب تقفلها وحاول تاني')
     } finally {
       setLoading(false)
@@ -116,6 +119,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
         options: { emailRedirectTo: window.location.origin },
       })
       if (resendError) {
+        console.error('[لغتي auth] resend error', resendError.status, resendError.code, resendError.message)
         setResendState(resendError.message.toLowerCase().includes('confirm') ? 'already-confirmed' : 'error')
       } else {
         setResendState('sent')

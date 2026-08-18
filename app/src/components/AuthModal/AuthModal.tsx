@@ -78,7 +78,7 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
         const { data, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: name } },
+          options: { data: { full_name: name }, emailRedirectTo: window.location.origin },
         })
         if (signUpError) {
           setError(
@@ -110,7 +110,11 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
   async function handleResend() {
     setResendState('loading')
     try {
-      const { error: resendError } = await supabase.auth.resend({ type: 'signup', email })
+      const { error: resendError } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+        options: { emailRedirectTo: window.location.origin },
+      })
       if (resendError) {
         setResendState(resendError.message.toLowerCase().includes('confirm') ? 'already-confirmed' : 'error')
       } else {

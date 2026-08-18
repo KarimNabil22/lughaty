@@ -6,6 +6,7 @@ import Button from '../../ui/Button'
 import ReactionPopup from '../../games/ReactionPopup/ReactionPopup'
 import StarBurst from '../../games/StarBurst/StarBurst'
 import TraceLetterGame from '../../games/TraceLetterGame/TraceLetterGame'
+import BalloonPopGame from '../../games/BalloonPopGame/BalloonPopGame'
 import { playSfx, vibrate } from '../../../lib/sound'
 import styles from './LevelPlayer.module.css'
 
@@ -127,6 +128,12 @@ function LevelPlayer({ level, onExit, onComplete }: LevelPlayerProps) {
         {screen === 'game' && level.game === 'trace' && (
           <div className={styles.panel}>
             <TraceLetterGame letter={letter} onResult={handleGameResult} />
+          </div>
+        )}
+
+        {screen === 'game' && level.game === 'balloon' && (
+          <div className={styles.panel}>
+            <BalloonPopGame letter={letter} onResult={handleGameResult} />
           </div>
         )}
 

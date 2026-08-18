@@ -96,3 +96,12 @@ export const LETTER_NAMES: Record<string, string> = {
 export function wordsForLetter(letter: string): LetterWord[] {
   return LETTER_WORDS.filter((w) => w.letter === letter)
 }
+
+function shuffle<T>(arr: T[]): T[] {
+  return [...arr].sort(() => Math.random() - 0.5)
+}
+
+export function otherLetters(letter: string, n: number): string[] {
+  const pool = Object.keys(LETTER_NAMES).filter((l) => l !== letter)
+  return shuffle(pool).slice(0, n)
+}

@@ -1,0 +1,53 @@
+.hint {
+  font-size: 14px;
+  color: var(--plum);
+  opacity: 0.75;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.arena {
+  position: relative;
+  height: 340px;
+  background: var(--soft);
+  border-radius: 18px;
+  border: 3px solid var(--mango);
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -90px;
+  width: 62px;
+  height: 78px;
+  border-radius: 50% 50% 48% 48%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  box-shadow: inset -6px -8px 0 rgba(0, 0, 0, 0.12);
+  transition-property: bottom;
+  transition-timing-function: linear;
+}
+
+.shake {
+  animation: shake 0.35s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}

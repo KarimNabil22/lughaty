@@ -53,7 +53,11 @@ function AuthModal({ open, tab, onTabChange, onClose }: AuthModalProps) {
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
       setLoading(false)
       if (signInError) {
-        setError('البريد أو كلمة المرور غلط')
+        setError(
+          signInError.code === 'email_not_confirmed'
+            ? 'لازم تأكّد إيميلك الأول — افتح الرسالة اللي بعتناهالك'
+            : 'البريد أو كلمة المرور غلط',
+        )
         return
       }
       resetForm()

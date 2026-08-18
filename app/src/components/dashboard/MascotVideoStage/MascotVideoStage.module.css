@@ -1,0 +1,105 @@
+.stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  border: 3px dashed var(--mango);
+  background: var(--soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 10px;
+  background: var(--plum);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mascot {
+  width: 88px;
+  height: 88px;
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+.mascot svg {
+  width: 100%;
+  height: 100%;
+}
+
+.morphStage {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.morphLetter,
+.morphEmoji {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--purple);
+  animation: crossFade 6s ease-in-out infinite;
+}
+
+.morphEmoji {
+  opacity: 0;
+  animation-delay: 3s;
+}
+
+.note {
+  font-size: 11px;
+  color: var(--plum);
+  opacity: 0.65;
+  text-align: center;
+  margin-top: 8px;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(4deg);
+  }
+}
+
+@keyframes crossFade {
+  0%,
+  45% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50%,
+  95% {
+    opacity: 0;
+    transform: scale(0.5) rotate(8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}

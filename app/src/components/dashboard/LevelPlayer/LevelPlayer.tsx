@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Level } from '../../../data/worlds'
 import { LETTER_NAMES, wordsForLetter } from '../../../data/letters'
 import MascotIcon from '../../icons/MascotIcon'
+import MascotVideoStage from '../MascotVideoStage/MascotVideoStage'
 import Button from '../../ui/Button'
 import ReactionPopup from '../../games/ReactionPopup/ReactionPopup'
 import StarBurst from '../../games/StarBurst/StarBurst'
@@ -94,14 +95,8 @@ function LevelPlayer({ level, onExit, onComplete }: LevelPlayerProps) {
 
         {screen === 'lesson' && (
           <>
-            <div className={styles.mascotWrap}>
-              <span className={styles.mascotFloat}>
-                <MascotIcon />
-              </span>
-            </div>
             <div className={styles.panel}>
-              <div className={styles.bigLetter}>{letter}</div>
-              {examples[0] && <div className={styles.exampleEmoji}>{examples[0].emoji}</div>}
+              <MascotVideoStage letter={letter} emoji={examples[0]?.emoji} />
               <div className={styles.row}>
                 <Button variant="primary" onClick={() => speak(letterName)}>
                   🔊 اسمع
